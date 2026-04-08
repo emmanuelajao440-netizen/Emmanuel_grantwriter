@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ajao Emmanuel — Grant Writer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #162d52;
+    --gold: #c89b4e;
+    --gold-light: #e8c07a;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --text: #1a2a40;
+    --muted: #5a6a7e;
+    --border: #dde3ec;
+    --section-bg: #f4f7fb;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 6vw; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); animation: fadeDown 0.6s ease both; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { font-size: 0.88rem; font-weight: 500; text-decoration: none; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--navy); color: var(--white) !important; padding: 0.5rem 1.3rem; border-radius: 4px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 6vw 5rem; gap: 4rem; background: var(--cream); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,155,78,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.2s ease both; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.15; color: var(--navy); margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.35s ease both; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 2.2rem; font-weight: 300; animation: fadeUp 0.8s 0.5s ease both; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.65s ease both; }
+  .btn-primary { background: var(--navy); color: var(--white); padding: 0.85rem 2rem; border-radius: 4px; font-size: 0.92rem; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); padding: 0.85rem 2rem; border-radius: 4px; font-size: 0.92rem; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; transition: all 0.2s; }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+  .hero-visual { display: flex; flex-direction: column; gap: 1rem; animation: fadeLeft 0.9s 0.4s ease both; }
+  .hero-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 1.8rem; box-shadow: 0 4px 24px rgba(13,31,60,0.07); }
+  .hero-card-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; }
+  .hero-card-val { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--navy); }
+  .hero-card-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+  .hero-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* SHARED */
+  section { padding: 6rem 6vw; }
+  .section-tag { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: 1rem; }
+  .section-desc { font-size: 1rem; color: var(--muted); max-width: 560px; font-weight: 300; }
+  .divider { width: 50px; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.2rem 0 2.4rem; }
+
+  /* ABOUT */
+  .about { background: var(--white); display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+  .about-img-placeholder { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.15); font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; }
+  .about-img-wrap { position: relative; }
+  .about-img-badge { position: absolute; bottom: -1.2rem; right: -1.2rem; background: var(--gold); color: var(--navy); padding: 1rem 1.5rem; border-radius: 8px; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; box-shadow: 0 8px 24px rgba(200,155,78,0.3); }
+  .about-img-badge span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; }
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.8rem; }
+  .about-list li { display: flex; align-items: center; gap: 0.8rem; font-size: 0.95rem; color: var(--text); }
+  .about-list li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+
+  /* SERVICES */
+  .services { background: var(--section-bg); }
+  .services-header { margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem 1.8rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,31,60,0.1); border-color: var(--gold); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { width: 46px; height: 46px; background: rgba(200,155,78,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; font-size: 1.3rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.7rem; }
+  .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+  /* WINS */
+  .wins { background: var(--navy); color: var(--white); }
+  .wins .section-title { color: var(--white); }
+  .wins .section-desc { color: rgba(255,255,255,0.65); }
+  .wins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .win-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 2rem 1.8rem; transition: background 0.2s; }
+  .win-card:hover { background: rgba(200,155,78,0.12); border-color: rgba(200,155,78,0.4); }
+  .win-amount { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); margin-bottom: 0.3rem; }
+  .win-org { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .win-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .win-tag { display: inline-block; margin-top: 1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(200,155,78,0.15); padding: 0.25rem 0.7rem; border-radius: 3px; }
+
+  /* STATS BAR */
+  .stats-bar { background: var(--gold); display: grid; grid-template-columns: repeat(4, 1fr); padding: 3rem 6vw; gap: 2rem; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--navy); }
+  .stat-label { font-size: 0.85rem; font-weight: 600; color: rgba(13,31,60,0.7); margin-top: 0.2rem; }
+
+  /* PROCESS */
+  .process { background: var(--white); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: var(--border); z-index: 0; }
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-num { width: 56px; height: 56px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+  .step h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--section-bg); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .testi-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; box-shadow: 0 2px 16px rgba(13,31,60,0.05); }
+  .testi-quote { font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.8rem; font-family: 'Playfair Display', serif; }
+  .testi-text { font-size: 0.92rem; color: var(--text); line-height: 1.75; margin-bottom: 1.4rem; font-weight: 300; }
+  .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+  .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--white); flex-shrink: 0; }
+  .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+  .testi-role { font-size: 0.8rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact { background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact .section-title { color: var(--white); }
+  .contact .section-desc { color: rgba(255,255,255,0.6); }
+  .contact .divider { background: var(--gold); }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; }
+  .contact-icon { width: 42px; height: 42px; background: rgba(200,155,78,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-item-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+  .contact-item-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.15rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.5); }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 0.85rem 1rem; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; transition: border-color 0.2s; outline: none; resize: none; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--navy); }
+  .btn-send { background: var(--gold); color: var(--navy); padding: 1rem 2.2rem; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
+  .btn-send:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer { background: #091628; color: rgba(255,255,255,0.45); padding: 2rem 6vw; display: flex; align-items: center; justify-content: space-between; font-size: 0.83rem; }
+  footer .foot-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 700; }
+  footer .foot-logo span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-14px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeLeft { from { opacity:0; transform:translateX(30px);  } to { opacity:1; transform:translateX(0); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero, .about, .contact { grid-template-columns: 1fr; }
+    .hero { padding-top: 6rem; }
+    .about-img-wrap { display: none; }
+    .services-grid, .wins-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-cards-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ajao<span>.</span> Emmanuel</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Professional Grant Writer</div>
+    <h1>Funding the <em>Ideas</em> That Change the World</h1>
+    <p class="hero-desc">I craft compelling, research-backed grant proposals that win funding across nonprofits, government agencies, research institutions, arts, healthcare, and beyond.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Let's Work Together</a>
+      <a href="#portfolio" class="btn-outline">View Track Record</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-label">Total Funding Secured</div>
+      <div class="hero-card-val">$4.2M+</div>
+      <div class="hero-card-sub">Across 60+ successful grant applications</div>
+    </div>
+    <div class="hero-cards-row">
+      <div class="hero-card">
+        <div class="hero-card-label">Success Rate</div>
+        <div class="hero-card-val">78%</div>
+        <div class="hero-card-sub">Above industry average</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Years Experience</div>
+        <div class="hero-card-val">6+</div>
+        <div class="hero-card-sub">Across multiple sectors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">$4.2M+</div><div class="stat-label">Total Funding Won</div></div>
+  <div class="stat"><div class="stat-num">60+</div><div class="stat-label">Grants Submitted</div></div>
+  <div class="stat"><div class="stat-num">78%</div><div class="stat-label">Approval Rate</div></div>
+  <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Happy Clients</div></div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-img-wrap">
+    <div class="about-img-placeholder">AE</div>
+    <div class="about-img-badge">6+ <span>Years Experience</span></div>
+  </div>
+  <div class="about-text">
+    <div class="section-tag">About Me</div>
+    <h2 class="section-title">Your Strategic Partner in Securing Grants</h2>
+    <div class="divider"></div>
+    <p class="section-desc">I'm Ajao Emmanuel, a seasoned grant writer with a proven track record of helping organizations of all sizes unlock critical funding. My approach combines strategic storytelling, deep funder research, and rigorous proposal development to maximize your chances of success.</p>
+    <ul class="about-list">
+      <li>Expert in federal, state, and private foundation grants</li>
+      <li>Deep understanding of funder priorities and language</li>
+      <li>End-to-end support from research to submission</li>
+      <li>Strong track record across diverse sectors</li>
+      <li>Data-driven approach to proposal strategy</li>
+      <li>Certified Grant Writer — professional standard</li>
+    </ul>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title">Comprehensive Grant Writing Services</h2>
+    <div class="divider"></div>
+    <p class="section-desc">From identifying the right funders to crafting airtight proposals and managing post-award reports, I handle every stage of the grant lifecycle.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>Grant Research &amp; Prospecting</h3>
+      <p>Identifying the best-fit funders from federal agencies, foundations, and corporate giving programs aligned to your mission and eligibility.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <h3>Proposal Writing</h3>
+      <p>Crafting persuasive, well-structured narratives that speak directly to funder priorities, with compelling case statements and logic models.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Needs Assessments &amp; Budgets</h3>
+      <p>Building data-driven needs statements and detailed, justified budgets that demonstrate organizational credibility and fiscal stewardship.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏛️</div>
+      <h3>Federal &amp; Government Grants</h3>
+      <p>Navigating complex federal funding programs (NIH, USDA, NSF, HUD, DOE) with compliant, competitive proposals and full documentation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Foundation &amp; Corporate Grants</h3>
+      <p>Building relationships and crafting tailored applications for private foundations, community foundations, and corporate giving programs.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Grant Management &amp; Reporting</h3>
+      <p>Post-award support including progress reports, compliance documentation, and renewal applications to maintain funder relationships.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wins" id="portfolio">
+  <div class="section-tag" style="color:var(--gold-light)">Track Record</div>
+  <h2 class="section-title">Selected Grant Wins</h2>
+  <div class="divider"></div>
+  <p class="section-desc">A snapshot of funded projects representing diverse sectors and funding sources.</p>
+  <div class="wins-grid">
+    <div class="win-card">
+      <div class="win-amount">$750,000</div>
+      <div class="win-org">Community Health Initiative</div>
+      <div class="win-desc">Federal HRSA grant for expanding primary care access in underserved rural communities across three counties.</div>
+      <span class="win-tag">Healthcare</span>
+    </div>
+    <div class="win-card">
+      <div class="win-amount">$500,000</div>
+      <div class="win-org">Youth Empowerment Foundation</div>
+      <div class="win-desc">OJJDP grant supporting a comprehensive workforce development and mentorship program for at-risk youth.</div>
+      <span class="win-tag">Social Impact</span>
+    </div>
+    <div class="win-card">
+      <div class="win-amount">$320,000</div>
+      <div class="win-org">State University Research Lab</div>
+      <div class="win-desc">NSF award funding a two-year climate resilience research project with cross-institutional collaboration.</div>
+      <span class="win-tag">Academic Research</span>
+    </div>
+    <div class="win-card">
+      <div class="win-amount">$200,000</div>
+      <div class="win-org">Regional Arts Council</div>
+      <div class="win-desc">NEA grant to expand community arts programming and cultural education initiatives for 5,000+ participants.</div>
+      <span class="win-tag">Arts &amp; Culture</span>
+    </div>
+    <div class="win-card">
+      <div class="win-amount">$450,000</div>
+      <div class="win-org">Affordable Housing Alliance</div>
+      <div class="win-desc">HUD Community Development Block Grant for constructing 40 affordable housing units in an underinvested neighborhood.</div>
+      <span class="win-tag">Housing &amp; Development</span>
+    </div>
+    <div class="win-card">
+      <div class="win-amount">$180,000</div>
+      <div class="win-org">Literacy for All NGO</div>
+      <div class="win-desc">Foundation grant funding adult literacy programs serving 1,200 beneficiaries annually in three urban centers.</div>
+      <span class="win-tag">Education</span>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-tag">How I Work</div>
+  <h2 class="section-title">My Grant Writing Process</h2>
+  <div class="divider"></div>
+  <p class="section-desc">A structured, collaborative approach that maximizes every proposal's chance of success.</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Discovery Call</h4>
+      <p>We align on your mission, goals, capacity, and funding priorities to build a clear strategy.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Funder Research</h4>
+      <p>I identify high-fit funding opportunities and assess eligibility, alignment, and deadlines.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Proposal Development</h4>
+      <p>Drafting, refining, and reviewing the full application with your team's feedback and collaboration.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Submission &amp; Follow-up</h4>
+      <p>Final review, compliant submission, and post-submission funder communication support.</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-tag">Client Feedback</div>
+  <h2 class="section-title">What Clients Are Saying</h2>
+  <div class="divider"></div>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Ajao transformed our scattered program ideas into a proposal that was both compelling and compliant. We secured the federal grant on our first attempt — something we hadn't managed in three years.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MT</div>
+        <div>
+          <div class="testi-name">Margaret Thompson</div>
+          <div class="testi-role">Executive Director, Health Access Initiative</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">His understanding of funder language is extraordinary. He knew exactly what the foundation was looking for and crafted a narrative that was authentic to our work yet perfectly aligned to their priorities.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JH</div>
+        <div>
+          <div class="testi-name">James Harrison</div>
+          <div class="testi-role">Program Manager, Youth Futures NGO</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Working with Ajao was seamless. He handled everything from the needs assessment to the budget narrative, and delivered a polished proposal well ahead of our deadline.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SB</div>
+        <div>
+          <div class="testi-name">Sarah Bennett</div>
+          <div class="testi-role">Director of Development, Arts Council</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <div class="section-tag" style="color:var(--gold-light)">Get In Touch</div>
+    <h2 class="section-title">Ready to Secure Your Next Grant?</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Let's discuss your funding goals. I take on a limited number of clients each quarter to ensure focused, high-quality work.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-text"><a href="/cdn-cgi/l/email-protection#1a7f77777b746f7f767b707b752e2e2a5a7d777b737634797577" style="color:rgba(255,255,255,0.75);text-decoration:none;"><span class="__cf_email__" data-cfemail="cfaaa2a2aea1baaaa3aea5aea0fbfbff8fa8a2aea6a3e1aca0a2">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-text">+234 903 162 2469</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📸</div>
+        <div>
+          <div class="contact-item-label">Instagram</div>
+          <a href="https://www.instagram.com/emmanuel_writer?igsh=MTM1bXkzNGl0MzAzZA%3D%3D&utm_source=qr" target="_blank" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.9rem;display:block;">@emmanuel_writer</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-item-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/emmanuel-pelumi-ajao-01006a3b3" target="_blank" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.9rem;display:block;">Emmanuel Pelumi Ajao</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="John"/>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Doe"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="john@organization.org"/>
+    </div>
+    <div class="form-group">
+      <label>Organization / Project</label>
+      <input type="text" placeholder="Your nonprofit or project name"/>
+    </div>
+    <div class="form-group">
+      <label>Service Needed</label>
+      <select>
+        <option value="" disabled selected>Select a service…</option>
+        <option>Grant Research &amp; Prospecting</option>
+        <option>Proposal Writing</option>
+        <option>Federal/Government Grants</option>
+        <option>Foundation &amp; Corporate Grants</option>
+        <option>Budget &amp; Needs Assessment</option>
+        <option>Grant Management &amp; Reporting</option>
+        <option>Full Grant Lifecycle Support</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell me about your project</label>
+      <textarea rows="4" placeholder="Briefly describe your organization, the grant opportunity (if known), and your funding goals…"></textarea>
+    </div>
+    <bu
